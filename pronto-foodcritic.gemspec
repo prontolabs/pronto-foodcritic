@@ -16,11 +16,9 @@ Gem::Specification.new do |s|
   s.license = 'MIT'
 
   s.files         = Dir.glob('{lib}/**/*') + %w[LICENSE README.md]
-  s.test_files    = `git ls-files -- {spec}/*`.split("\n")
   s.require_paths = ['lib']
 
   s.add_dependency 'foodcritic', '~> 3.0.0'
   s.add_dependency 'pronto', '~> 0.2.0'
   s.add_development_dependency 'rake', '~> 10.1.0'
-  s.add_development_dependency 'rspec', '~> 2.14.0'
 end

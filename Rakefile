@@ -3,7 +3,6 @@ require 'bundler'
 require 'rspec/core/rake_task'
 
 Bundler::GemHelper.install_tasks
-RSpec::Core::RakeTask.new(:spec)
 
 desc "Bundle the gem"
 task :bundle do
@@ -14,4 +13,4 @@ task :bundle do
 end
 
 task(:default).clear
-task default: [:bundle, :spec]
+task default: [:bundle]
