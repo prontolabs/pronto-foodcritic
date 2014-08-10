@@ -27,7 +27,7 @@ module Pronto
       return if path_type.nil?
 
       review = @linter.check({ path_type => path })
-      review.warnings.map do |warning|
+      review.warnings.select { |w| w.match[:filename] == path }.map do |warning|
         patch.added_lines.select { |line| line.new_lineno == warning.match[:line] }
                          .map { |line| new_message(warning, line) }
       end
