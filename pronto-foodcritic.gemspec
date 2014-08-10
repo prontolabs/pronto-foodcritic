@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.files         = Dir.glob('{lib}/**/*') + %w[LICENSE README.md]
   s.require_paths = ['lib']
 
-  s.add_dependency 'foodcritic', '~> 3.0.0'
+  s.add_dependency 'foodcritic', '~> 4.0.0'
   s.add_dependency 'pronto', '~> 0.2.0'
-  s.add_development_dependency 'rake', '~> 10.1.0'
+  s.add_development_dependency 'rake', '~> 10.3.0'
 end
