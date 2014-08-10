@@ -10,26 +10,28 @@ module Pronto
     def run(patches, _)
       return [] unless patches
 
-      patches.select { |patch| patch.additions > 0 }
-             .select { |patch| ruby_file?(patch.new_file_full_path) }
-             .map { |patch| inspect(patch) }
-             .flatten.compact
+      ruby_patches = patches.select { |patch| patch.additions > 0 }
+                            .select { |patch| ruby_file?(patch.new_file_full_path) }
+
+      inspect(ruby_patches)
     end
 
-    def inspect(patch)
-      path = patch.new_file_full_path.to_s
-      path_type = if path.include?('cookbook')
-                    :cookbook_paths
-                  elsif path.include?('role')
-                    :role_paths
-                  end
+    def inspect(patches)
+      paths = { cookbook_paths: [], role_paths: [] }
+      patches.each do |patch|
+        path = patch.new_file_full_path.to_s
+        if path.include?('cookbook')
+          paths[:cookbook_paths] << path
+        elsif path.include?('role')
+          paths[:role_paths] << path
+        end
+      end
 
-      return if path_type.nil?
-
-      review = @linter.check({ path_type => path })
-      review.warnings.select { |w| w.match[:filename] == path }.map do |warning|
-        patch.added_lines.select { |line| line.new_lineno == warning.match[:line] }
-                         .map { |line| new_message(warning, line) }
+      @linter.check(paths).warnings.flat_map do |warning|
+        patches.select { |patch| patch.new_file_full_path.to_s == warning.match[:filename] }
+               .flat_map(&:added_lines)
+               .select { |line| line.new_lineno == warning.match[:line] }
+               .flat_map { |line| new_message(warning, line) }
       end
     end
 
