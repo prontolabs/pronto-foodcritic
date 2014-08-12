@@ -17,6 +17,18 @@ module Pronto
     end
 
     def inspect(patches)
+      paths = chef_paths(patches)
+      return [] if paths[:cookbook_paths].none? && paths[:role_paths].none?
+
+      @linter.check(paths).warnings.flat_map do |warning|
+        patches.select { |patch| patch.new_file_full_path.to_s == warning.match[:filename] }
+               .flat_map(&:added_lines)
+               .select { |line| line.new_lineno == warning.match[:line] }
+               .flat_map { |line| new_message(warning, line) }
+      end
+    end
+
+    def chef_paths(patches)
       paths = { cookbook_paths: [], role_paths: [] }
       patches.each do |patch|
         path = patch.new_file_full_path.to_s
@@ -26,15 +38,7 @@ module Pronto
           paths[:role_paths] << path
         end
       end
-
-      return [] if paths[:cookbook_paths].none? && paths[:role_paths].none?
-
-      @linter.check(paths).warnings.flat_map do |warning|
-        patches.select { |patch| patch.new_file_full_path.to_s == warning.match[:filename] }
-               .flat_map(&:added_lines)
-               .select { |line| line.new_lineno == warning.match[:line] }
-               .flat_map { |line| new_message(warning, line) }
-      end
+      paths
     end
 
     def new_message(warning, line)
