@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.2
+
+### Bugs fixed
+
+* Don't crash when none of the changes are to cookbooks and roles.
+
 ## 0.2.1
 
 ### Changes
