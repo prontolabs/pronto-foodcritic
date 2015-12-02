@@ -11,7 +11,7 @@ module Pronto
       return [] unless patches
 
       ruby_patches = patches.select { |patch| patch.additions > 0 }
-                            .select { |patch| ruby_file?(patch.new_file_full_path) }
+        .select { |patch| ruby_file?(patch.new_file_full_path) }
 
       inspect(ruby_patches)
     end
@@ -22,9 +22,9 @@ module Pronto
 
       @linter.check(paths).warnings.flat_map do |warning|
         patches.select { |patch| patch.new_file_full_path.to_s == warning.match[:filename] }
-               .flat_map(&:added_lines)
-               .select { |line| line.new_lineno == warning.match[:line] }
-               .flat_map { |line| new_message(warning, line) }
+          .flat_map(&:added_lines)
+          .select { |line| line.new_lineno == warning.match[:line] }
+          .flat_map { |line| new_message(warning, line) }
       end
     end
 
