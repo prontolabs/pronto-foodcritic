@@ -33,7 +33,7 @@ module Pronto
     def new_message(warning, line)
       path = line.patch.delta.new_file[:path]
       message = "#{warning.rule.code} - #{warning.rule.name}"
-      Message.new(path, line, :warning, message)
+      Message.new(path, line, :warning, message, nil, self.class)
     end
   end
 end
