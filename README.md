@@ -1,7 +1,7 @@
 # Pronto runner for Food Critic
 
 [![Code Climate](https://codeclimate.com/github/mmozuras/pronto-foodcritic.png)](https://codeclimate.com/github/mmozuras/pronto-foodcritic)
-[![Build Status](https://travis-ci.org/mmozuras/pronto-foodcritic.png)](https://travis-ci.org/mmozuras/pronto-foodcritic)
+[![Build Status](https://secure.travis-ci.org/mmozuras/pronto-foodcritic.svg)](http://travis-ci.org/mmozuras/pronto-foodcritic)
 [![Gem Version](https://badge.fury.io/rb/pronto-foodcritic.png)](http://badge.fury.io/rb/pronto-foodcritic)
 [![Dependency Status](https://gemnasium.com/mmozuras/pronto-foodcritic.png)](https://gemnasium.com/mmozuras/pronto-foodcritic)
 
