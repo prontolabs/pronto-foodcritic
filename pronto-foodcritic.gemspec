@@ -34,7 +34,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency('foodcritic', '~> 9', '>= 9.0.0')
   s.add_dependency('pronto', '~> 0.8.0')
-  s.add_development_dependency('rake', '~> 11.0')
+  s.add_development_dependency('rake', '~> 12.0')
   s.add_development_dependency('rspec', '~> 3.4')
   s.add_development_dependency('rspec-its', '~> 1.2')
 end
