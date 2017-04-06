@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.platform = Gem::Platform::RUBY
   s.author = 'Mindaugas Mozūras'
   s.email = 'mindaugas.mozuras@gmail.com'
-  s.homepage = 'http://github.org/mmozuras/pronto-foodcritic'
+  s.homepage = 'http://github.com/mmozuras/pronto-foodcritic'
   s.summary = 'Pronto runner for Food Critic, lint tool for chef'
 
   s.licenses = ['MIT']
