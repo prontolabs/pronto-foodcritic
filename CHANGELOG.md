@@ -1,5 +1,13 @@
 # Changelog
 
+
+## 0.11.0
+
+### Changes
+
+* Add Foodcritic options rule_file, search_gems and include_rules, allows to customize CI with custom ignores and Foodcritic rules.
+* Add exclude option to ignore Foodcritic linter.
+
 ## 0.2.2
 
 ### Bugs fixed
